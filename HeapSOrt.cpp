@@ -1,17 +1,21 @@
 #include <bits/stdc++.h>
 using namespace std;
-
-void MaxHeapify(int a[], int i, int n)
+int count =0;
+int MaxHeapify(int a[], int i, int n)
 {
+	int count =0;
 	int j, temp;
 	temp = a[i];
 	j = 2*i;
- 
+  
  	while (j <= n)
 	{
-		if (j < n && a[j+1] > a[j])
-		j = j+1;
+		if (j < n && a[j+1] > a[j]){
+				j = j+1;
+				count++;
+		}
 	
+	    
 		if (temp > a[j])
 			break;
 		
@@ -19,10 +23,11 @@ void MaxHeapify(int a[], int i, int n)
 		{
 			a[j/2] = a[j];
 			j = 2*j;
+			count++;
 		}
 	}
 	a[j/2] = temp;
-	return;
+	return count;
 }
 void HeapSort(int a[], int n)
 {
@@ -64,6 +69,6 @@ int main()
  
 	for (i = 1; i < n; i++)
 		cout<<arr[i]<<" ";
- 
+    cout<<"Comparisons"<<count;
 	return 0;
 }
